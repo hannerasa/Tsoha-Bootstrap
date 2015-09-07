@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni]( https://hanneras.users.cs.helsinki.fi/Tietokantasovellus/Tsoha-Bootstrap/README.md)
+* [Linkki sovellukseeni]( https://hanneras.users.cs.helsinki.fi/)
 * [Linkki dokumentaatiooni](https://github.com/hannerasa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
