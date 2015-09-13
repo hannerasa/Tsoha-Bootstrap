@@ -1,7 +1,10 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # korvaa tämä omalla käyttäjätunnuksellasi
 USERNAME="hanneras"
 # korvaa tämä haluamallasi kansion nimellä
-Tietokantasovellus="tsoha"
+PROJECT_FOLDER="Tietokantasovellus
 # sovelluksesi tulee sijaitsemaan osoitteessa hanneras.users.cs.helsinki.fi/Tietokantasovellus
+
+
+
