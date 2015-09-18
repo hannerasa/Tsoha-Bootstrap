@@ -1,9 +1,21 @@
 ﻿-- Lisää INSERT INTO lauseet tähän tiedostoon
 
 -- Kayttaja-taulun testidata
-INSERT INTO Kayttaja (nimi, password) VALUES ('Hannele', 'sala123'); -- Koska id-sarakkeen tietotyyppi on SERIAL, se asetetaan automaattisesti
-INSERT INTO Kayttäja (name, password) VALUES ('Pekka', 'sala456');
+INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Hannele', 'sala123', '10');
+INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Pekka', 'sala456', '20');
+
+-- Astiat-taulun testidata
+INSERT INTO Astiat (nimi) VALUES ('Lautanen');
+INSERT INTO Astiat (nimi) VALUES ('Kuppi');
+
+-- Astiat-taulun testidata
+INSERT INTO Brandi (nimi) VALUES ('Teema');
+INSERT INTO Brandi (nimi) VALUES ('Taika');
+
+
 -- Luokittelu taulun testidata
-INSERT INTO Luokittelu (vari, koko, hinta, muoto, malli) VALUES ('Harmaa', '2 dl', '15 €', 'Pyöreä', '__');
-INSERT INTO Luokittelu (vari, koko, hinta, muoto, malli) VALUES ('Vihreä', '15 cm', '25 €', 'Pyöreä', 'Syvä');
-INSERT INTO Luokittelu (vari, koko, hinta, muoto, malli) VALUES ('Vaalean harmaa', '26 cm', '29 €', 'Pyöreä', 'Matala');
+INSERT INTO Luokittelu (nimi, arvo) VALUES ('väri', 'Harmaa');
+INSERT INTO Luokittelu (nimi, arvo) VALUES ('koko', '21 cm');
+INSERT INTO Luokittelu (nimi, arvo) VALUES ('hinta', '15 €');
+INSERT INTO Luokittelu (nimi, arvo) VALUES ('muoto', 'pyöreä');
+INSERT INTO Luokittelu (nimi, arvo) VALUES ('malli', 'syvä');
