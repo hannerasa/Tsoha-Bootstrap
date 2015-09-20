@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Astiat</h1>
+  
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>As_id</th>
+            <th>Nimi</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Astiat listaus -->
+        {% for astia in astiat %}
+        <tr>
+            <td><a href="{{base_path}}/astiat/{{astia.as_id}}">{{astia.nimi}}</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

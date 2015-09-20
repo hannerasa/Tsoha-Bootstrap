@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,16 +39,20 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="#">Astiat</a></li>
+            <li><a href="{{ base_path }}/lisays/">Astiat lisäys</a></li>
+            <li><a href="{{ base_path }}/astia/">Astiat listaus</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Sisäänkirjautuminen</a></li>
-        </div>
+          <li><a href="{{ base_path }}/kirjautuminen/">Sisäänkirjautuminen</a></li>
+          </div>
       </div>
     </nav>
 
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
+      
+      
+      
       {% block content %}{% endblock %}
     </div>
 

@@ -7,9 +7,7 @@ Yleisiä linkkejä:
 
 ## HUOM
 
-User palvelimen kanssa käyttöoikeusongelmia, jonka vuoksi ei voi selaimella kutsua sovellusta. Apua pyydetty atk-avusta, odotellaan vastausta.
-Kaikki viikon 2 tehtävät tehty ja muutokset näkyy GitHubissa. Oman sovelluksen näkymät perustasolla ja parannetaan kun niitä pääsee ajamaan 
-users palvelimelta. 
+Sovellus ei vielä toimi. Ohjelmamuutokset tehty, mutta jokin vielä mättää. Jatketaan virheen etsintää.
 
 ## Työn aihe
 
