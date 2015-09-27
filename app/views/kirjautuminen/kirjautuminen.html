@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Sisäänkirjautuminen</h1>
+
+  <form method="post" action="{{base_path}}/kirjautuminen">
+    <div class="form-group">
+      <label>Käyttäjätunnus</label>
+      <input type="text" class="form-control" name="nimi" value="{{nimi}}">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input type="password" class="form-control" name="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kirjaudu</button>
+  </form>
+{% endblock %}
+  
+  
+  

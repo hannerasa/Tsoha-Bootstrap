@@ -5,15 +5,25 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>As_id</th>
-            <th>Nimi</th>            
+            <th>Nimi</th>
+            <th>Väri</th>
+            <th>Koko</th> 
+            <th>Hinta</th> 
+            <th>Muoto</th> 
+            <th>Malli</th> 
         </tr>
     </thead>
+    
     <tbody>
         <!-- Astiat listaus -->
         {% for astia in astiat %}
         <tr>
-            <td><a href="{{base_path}}/astiat/{{astia.as_id}}">{{astia.nimi}}</a></td>
+            <td><a href="{{base_path}}/astia/{{astia.as_id}}">{{astia.nimi}}</a></td>
+            <td>{{astia.vari}}</td>
+            <td>{{astia.koko}}</td>
+            <td>{{astia.hinta}}</td>
+            <td>{{astia.muoto}}</td>
+            <td>{{astia.malli}}</td>            
             </tr>
         {% endfor %}
     </tbody>

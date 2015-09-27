@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Muokkaa astiaa: {{astia.nimi}}</h1>
+<form method="post" action="{{base_path}}/astia/{{astia.as_id}}/muokkaa">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" class="form-control" name="nimi" value="{{astia.nimi}}"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Tyyppi</label>
+        <input type="text" class="form-control" name="tyyppi" value="{{astia.tyyppi}}"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Yleistä</label>
+        <textarea class="form-control" name="tietoa">{{astia.tietoa}}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}
+{% endblock %}

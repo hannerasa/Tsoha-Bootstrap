@@ -39,28 +39,36 @@ class Astiat extends BaseModel{
 
   public function save(){
     
-    $query = DB::connection()->prepare('INSERT INTO Astia (nimi, vari, koko, hinta, muoto, malli) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli) RETURNING id');
-    $query->execute(array('nimi' => $this->nimi, 'vari' => $this->vari, 'koko' => $this->koko,'hinta' => $this->hinta, 'muoto' => $this->muoto, 'malli' => $this->malli ));
+    $query = DB::connection()->prepare('INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli) RETURNING as_id');
+    $query->execute(array('nimi' => $this->nimi,
+        'vari' => $this->vari,
+        'koko' => $this->koko,
+        'hinta' => $this->hinta,
+        'muoto' => $this->muoto,
+        'malli' => $this->malli ));
+    
     $row = $query->fetch();
     $this->as_id = $row['as_id'];
   }
-   /*public static function find($as_id){
+   public static function find($as_id){
     $query = DB::connection()->prepare('SELECT * FROM Astiat WHERE as_id = :as_id LIMIT 1');
     $query->execute(array('as_id' => $as_id));
     $row = $query->fetch();
 
     if($row){
-      $astia = new Astiat(array($routes->post('/astia', function(){
-    AstiatController::store();
-});
+      $astia = new Astiat(array(
         'as_id' => $row['as_id'],
-        'name' => $row['name']
+        'nimi' => $row['nimi'],
+        'vari' => $row['vari'],
+        'koko' => $row['koko'],
+        'hinta' => $row['hinta'],
+        'muoto' => $row['muoto'],
+        'malli' => $row['malli']
         ));
-
-      return $astia;
+       return $astia;
     }
 
     return null;
-  } */
+  } 
 
 }

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+  <h1>{{brandi.nimi}}</h1>
+      
+ {% if user_logged_in %} 
+  <!-- Painikkeet tähän -->
+  <p>
+    <button class="btn btn-danger">Muuta</button>    
+    <button class="btn btn-danger">Poista</button>
+  {% endif %}
+  </p>
+  <div>
+      
+  <!-- Tiedot tulee listana tähän -->
+ 
+  <h3>Brandin tiedot</h3>
+  <ul>
+    <li><strong>Valmistaja: </strong>{{brandi.valmistaja}}</li>
+    <li><strong>Maa: </strong>{{brandi.maa}}</li>
+  </ul>
+      
+  </div>  
+ 
+{% endblock %}

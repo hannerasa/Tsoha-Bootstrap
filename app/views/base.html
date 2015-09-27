@@ -33,18 +33,25 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
-           <a class="navbar-brand" href="#">Astiatietokanta</a>
+           <a class="navbar-brand" href="{{ base_path }}">Astiatietokanta</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{ base_path }}/lisays/">Astiat lisäys</a></li>
-            <li><a href="{{ base_path }}/astia/">Astiat listaus</a></li>
+            <li><a href="{{ base_path }}/lisays/new">Astiat lisäys</a></li>
+            <li><a href="{{ base_path }}/astia">Astiat listaus</a></li>
+            <li><a href="{{ base_path }}/brandi">Brändi listaus</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ base_path }}/kirjautuminen/">Sisäänkirjautuminen</a></li>
+          <li><a href="{{ base_path }}/kirjautuminen">Sisäänkirjautuminen</a></li>
           </div>
+          
+        <!--  <p class="ingressi"> Astiasto </p>
+
+	<p class="oikea"><img src="http://hanneras.user.cs.helsinki.fi/tietokantasovellus/app/view/teema_harmaa.jpg" width="210" height="180" alt="Astiasto"/>
+        <p class="oikea"><img src="c:/users/hanne/pictures/teema_harmaa.jpg" width="210" height="180" alt="Astiasto"/> -->
+          
       </div>
     </nav>
 
