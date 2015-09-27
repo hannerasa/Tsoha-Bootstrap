@@ -2,12 +2,22 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](http://hanneras.users.cs.helsinki.fi/)
+* [Linkki sovellukseeni](http://hanneras.users.cs.helsinki.fi/Tietokantasovellus)
 * [Linkki dokumentaatiooni](https://github.com/hannerasa/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## HUOM
 
-Sovellus ei vielä toimi. Ohjelmamuutokset tehty, mutta jokin vielä mättää. Jatketaan virheen etsintää.
+Astia ja brandi tietojen yksittäinen näyttäminen ei toimi ja sen takia myös muokkaus ja poisto ei toimi. 
+Ääkköset ei toimi. Virheen etsintä jatkuu.
+
+Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä, ohjaus eteenpäin ei toimi ihan oikein.
+
+Listaukset: astia ja brändi toimii.
+Astian lisäys toimii, mutta paluu ei toimi oikein.
+
+Validointeja ei ole vielä tehty.
+
+Käyttäjätunnus: testaaja, Salasana: sala1804
 
 ## Työn aihe
 
