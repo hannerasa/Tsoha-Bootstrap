@@ -7,6 +7,7 @@
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
+<<<<<<< HEAD
   
   $routes->get('/kirjautuminen', function(){
   // Kirjautumislomakkeen esitt�minen
@@ -47,3 +48,17 @@ $routes->get('/lisays/new', function(){
   $routes->get('/brandi/:bra_id', function($bra_id){
   BrandiController::show($bra_id);  
   });
+=======
+    
+    $routes->get('/astia', function(){
+  AstiatController::listaa();
+   });
+   
+  $routes->post('/astia', function(){
+  AstiatController::store();
+});
+   // Astian lisäyslomakkeen näyttäminen
+$routes->get('/lisays/new', function(){
+  AstiatController::create();
+});
+>>>>>>> 202ab7fea7f72036be92aa73ab0191d271bfe9d8
