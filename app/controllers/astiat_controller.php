@@ -11,14 +11,14 @@ class AstiatController extends BaseController{
   }
   
   public static function show($as_id) {
-        $astiat = Astiat::find($as_id);
-        View::make('astia/astiantiedot.html', array('astiat' => $astiat));
+        $astia = Astiat::find($as_id);
+        View::make('astia/astiantiedot.html', array('astia' => $astia));
     }
     
     public static function muokkaa($as_id){
       
-        $astiat = Astiat::find($as_id);
-        View::make('astia/muutos.html', array('astiat' => $astiat));
+        $astia = Astiat::find($as_id);
+        View::make('astia/muutos.html', array('astia' => $astia));
     }
     
      
@@ -34,7 +34,7 @@ class AstiatController extends BaseController{
     
     // Alustetaan uusi Astia-luokan olion käyttäjän syöttämillä arvoilla
     
-    $astiat = new Astiat(array(
+    $astia = new Astiat(array(
       'nimi' => $params['nimi'],
       'vari' => $params['vari'],
       'koko' => $params['koko'],
@@ -44,10 +44,10 @@ class AstiatController extends BaseController{
     ));
 
     // Kutsutaan  olion save metodia.
-    $astiat->save();
+    $astia->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen astiasto tietokannan esittelysivulle
-    Redirect::to('/astia/' . $astiat->as_id, array('message' => 'Astia on lisätty astiasto tietokantaan.'));
+    Redirect::to('/astia/' . $astia->as_id, array('message' => 'Astia on lisätty astiasto tietokantaan.'));
   }
   
 
@@ -65,27 +65,29 @@ class AstiatController extends BaseController{
     );
 
     // Alustetaan Astia-olio käyttäjän syöttämillä tiedoilla
-    $astiat = new Astiat($attributes);
-    $errors = $astiat->errors();
+    $astia = new Astiat($attributes);
+    $errors = $astia->errors();
 
     if(count($errors) > 0){
-      View::make('astia/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+      
+        View::make('astia/muutos.html', array('errors' => $errors, 'attributes' => $attributes));
+      
     }else{
-      // Kutsutaan alustetun olion update-metodia, joka päivittää astian tiedot tietokannassa
-      $astiat->update();
+      
+      $astia->update();
 
-      Redirect::to('/astia/' . $astiat->id, array('message' => 'Astiaa on nyt muokattu onnistuneesti!'));
+      Redirect::to('/astia/' . $astia->as_id, array('message' => 'Astiaa on nyt muokattu onnistuneesti!'));
     }
   }
 
   // Astian poistaminen
   public static function poista($as_id){
-    // Alustetaan Astiat-olio annetulla id:llä
-    $astiat = new Astiat(array('as_id' => $as_id));
-    // Kutsutaan Astia-malliluokan metodia destroy, joka poistaa pelin sen id:llä
-    $astiat->destroy();
+    // Alustetaan Astiat-olio annetulla as_id:llä
+    $astia = new Astiat(array('as_id' => $as_id));
+    // Kutsutaan Astia-malliluokan metodia destroy, joka poistaa astian sen as_id:llä
+    $astia->destroy();
 
     // Ohjataan käyttäjä astioiden  listaussivulle ilmoituksen kera
-    Redirect::to('/astia', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
+    Redirect::to('/astia/', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
   }
 }

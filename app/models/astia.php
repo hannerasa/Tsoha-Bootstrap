@@ -20,10 +20,10 @@ class Astiat extends BaseModel{
     $query->execute();
     
     $rows = $query->fetchAll();
-    $astia = array();
+    $astiat = array();
     
     foreach($rows as $row){
-           $astia[] = new Astiat(array(
+           $astiat[] = new Astiat(array(
            'as_id' => $row['as_id'],
            'nimi' => $row['nimi'],
            'vari' => $row['vari'],
@@ -34,7 +34,7 @@ class Astiat extends BaseModel{
                    
         ));
     }
-    return $astia;
+    return $astiat;
   }
 
   public function save(){
@@ -70,5 +70,16 @@ class Astiat extends BaseModel{
 
     return null;
   } 
-
+ public function update(){
+        $query = DB::connection()->prepare('UPDATE Astiat '
+                . 'SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli '
+                . 'WHERE as_id = :as_id');
+        $query->execute(array('nimi' => $this->nimi, 
+                              'vari' => $this->vari, 
+                              'koko' => $this->koko, 
+                              'hinta' => $this->hinta, 
+                              'muoto' => $this->muoto,
+                              'malli' => $this->malli, 
+                              'as_id' => $this->as_id));
+    }
 }
