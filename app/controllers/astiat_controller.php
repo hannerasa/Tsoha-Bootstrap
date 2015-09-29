@@ -34,7 +34,7 @@ class AstiatController extends BaseController{
     
     // Alustetaan uusi Astia-luokan olion käyttäjän syöttämillä arvoilla
     
-    $astia = new Astiat(array(
+    $attributes = (array(
       'nimi' => $params['nimi'],
       'vari' => $params['vari'],
       'koko' => $params['koko'],
@@ -43,14 +43,23 @@ class AstiatController extends BaseController{
       'malli' => $params['malli']      
     ));
 
-    // Kutsutaan  olion save metodia.
+    $astia = new Astiat($attributes);
+    $errors = $astia->errors();
+    
+     if(count($errors) > 0){
+      
+        View::make('/lisays/new.html', array('errors' => $errors, 'attributes' => $attributes));
+      
+    }else{
+      
     $astia->save();
 
-    // Ohjataan käyttäjä lisäyksen jälkeen astiasto tietokannan esittelysivulle
-    Redirect::to('/astia/' . $astia->as_id, array('message' => 'Astia on lisätty astiasto tietokantaan.'));
+         // Ohjataan käyttäjä lisäyksen jälkeen astiasto tietokannan esittelysivulle
+        Redirect::to('/astia/' . $astia->as_id, array('message' => 'Astia on lisätty astiasto tietokantaan.'));
+        }
+  
   }
   
-
   // Astian muokkaaminen (lomakkeen käsittely)
   public static function update($as_id){
     $params = $_POST;
@@ -59,6 +68,7 @@ class AstiatController extends BaseController{
       'as_id' => $as_id,
       'nimi' => $params['nimi'],
       'vari' => $params['vari'],
+      'koko' => $params['koko'],  
       'hinta' => $params['hinta'],
       'muoto' => $params['muoto'],
       'malli' => $params['malli']
@@ -70,7 +80,7 @@ class AstiatController extends BaseController{
 
     if(count($errors) > 0){
       
-        View::make('astia/muutos.html', array('errors' => $errors, 'attributes' => $attributes));
+        View::make('/astia/muutos.html', array('errors' => $errors, 'attributes' => $attributes));
       
     }else{
       

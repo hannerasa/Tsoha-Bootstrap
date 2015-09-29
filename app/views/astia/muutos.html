@@ -2,6 +2,17 @@
 {% block content %}
 
 <h1>Muokkaa astiaa: {{astia.nimi}}</h1>
+
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/astia/{{astia.as_id}}/muokkaa">
     <div class="form-group">
         <label>Nimi</label>
@@ -10,25 +21,25 @@
     
     <div class="form-group">
         <label>Väri</label>
-        <input type="text" class="form-control" name="tyyppi" value="{{astia.vari}}"/>
+        <input type="text" class="form-control" name="vari" value="{{astia.vari}}"/>
     </div>
     
     <div class="form-group">
         <label>Koko</label>
-        <textarea class="form-control" name="tietoa">{{astia.koko}}</textarea>
+         <input type="text" class="form-control" name="koko" value="{{astia.koko}}"/>
     </div>
     
      <div class="form-group">
         <label>Hinta</label>
-        <textarea class="form-control" name="tietoa">{{astia.hinta}}</textarea>
+         <input type="text" class="form-control" name="hinta" value="{{astia.hinta}}"/>
     </div>
      <div class="form-group">
         <label>Muoto</label>
-        <textarea class="form-control" name="tietoa">{{astia.muoto}}</textarea>
+        <input type="text" class="form-control" name="muoto" value="{{astia.muoto}}"/>
     </div>
      <div class="form-group">
         <label>Malli</label>
-        <textarea class="form-control" name="tietoa">{{astia.malli}}</textarea>
+       <input type="text" class="form-control" name="malli" value="{{astia.malli}}"/>
     </div>
     
     <div class="form-group">

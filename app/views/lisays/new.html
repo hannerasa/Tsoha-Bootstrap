@@ -2,6 +2,15 @@
 {% block content %}
   <h1>Lis‰‰ uusi astia</h1>
   
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
   <form method="post" action="{{base_path}}/astia">
     <div class="form-group">
@@ -22,7 +31,7 @@
 
     <div class="form-group">
       <label>Hinta</label>
-      <textarea name="hinta" class="form-control"></textarea>
+      <input type="text" name="hinta" class="form-control">
     </div>
       
       <div class="form-group">

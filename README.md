@@ -7,15 +7,12 @@ Yleisiä linkkejä:
 
 ## HUOM
 
-Astia ja brandi tietojen yksittäinen näyttäminen ei toimi ja sen takia myös muokkaus ja poisto ei toimi. 
-Ääkköset ei toimi. Virheen etsintä jatkuu.
+Ääkköset ei toimi. 
 
 Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä, ohjaus eteenpäin ei toimi ihan oikein.
 
-Listaukset: astia ja brändi toimii.
-Astian lisäys toimii, mutta paluu ei toimi oikein.
-
-Validointeja ei ole vielä tehty.
+Listaukset: astia ja brändi toimii sekä astian tietojen tarkastelu. 
+Astian muokkaus, lisäys ja poisto toimii, mutta poiston paluu ei toimi vielä oikein.
 
 Käyttäjätunnus: testaaja, Salasana: sala1804
 

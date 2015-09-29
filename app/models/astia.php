@@ -13,7 +13,40 @@ class Astiat extends BaseModel{
 
   public function __construct($attributes){
     parent::__construct($attributes);
+     $this->validators = array(
+            'validate_nimi', 
+            'validate_vari', 
+            'validate_koko',
+            'validate_hinta', 
+            'validate_muoto',
+            'validate_malli'
+          );
   }
+  
+    public function validate_nimi(){
+        return parent::validate_string_length($this->nimi, 3);
+    }
+    
+    public function validate_vari(){
+        return parent::validate_string_length($this->vari, 4);
+    }
+    
+    public function validate_koko(){
+        return parent::validate_string_length($this->koko, 2);
+        
+    }   
+    
+    public function validate_hinta(){
+        return parent::validate_string_length($this->hinta, 2);
+    } 
+    
+    public function validate_muoto(){
+        return parent::validate_string_length($this->muoto, 4);
+    }
+    
+    public function validate_malli(){
+        return parent::validate_string_length($this->malli, 4);
+    }
 
  public static function all(){
     $query = DB::connection()->prepare('SELECT * FROM Astiat');
@@ -70,7 +103,7 @@ class Astiat extends BaseModel{
 
     return null;
   } 
- public function update(){
+    public function update(){
         $query = DB::connection()->prepare('UPDATE Astiat '
                 . 'SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli '
                 . 'WHERE as_id = :as_id');
@@ -81,5 +114,10 @@ class Astiat extends BaseModel{
                               'muoto' => $this->muoto,
                               'malli' => $this->malli, 
                               'as_id' => $this->as_id));
+    }
+     
+     public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Astiat WHERE as_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id));
     }
 }
