@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if errors %}
+<div class="alert alert-danger">
+    
+        {% for error in errors %}
+       {{error}}
+        {% endfor %}
+    
+</div>
+{% endif %}
+
+
+<h1>Muokkaa brändiä: {{brandi.nimi}}</h1>
+
+
+<form method="post" action="{{base_path}}/brandi/{{brandi.bra_id}}/muokkaa">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" class="form-control" name="nimi" value="{{brandi.nimi}}"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Valmistaja</label>
+        <input type="text" class="form-control" name="valmistaja" value="{{brandi.valmistaja}}"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Maa</label>
+         <input type="text" class="form-control" name="maa" value="{{brandi.maa}}"/>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

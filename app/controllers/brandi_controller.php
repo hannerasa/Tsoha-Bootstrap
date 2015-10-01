@@ -11,8 +11,89 @@ class BrandiController extends BaseController{
   }
   
   public static function show($bra_id) {
-        $brandit = Brandi::find($bra_id);
-        View::make('brandi/brandintiedot.html', array('brandit' => $brandit));
+        $brandi = Brandi::find($bra_id);
+        View::make('brandi/brandintiedot.html', array('brandi' => $brandi));
     }
        
+   public static function muokkaa($bra_id){
+      
+        $brandi = Brandi::find($bra_id);
+        View::make('brandi/muutosb.html', array('brandi' => $brandi));
+    }
+    
+     
+    // näyttää lomakkeen
+    public static function create(){
+    //    self::check_logged_in();
+        View::make('lisays/newb.html');
+    }
+    
+  public static function store(){
+   
+    $params = $_POST;
+    
+    // Alustetaan uusi Brandi-luokan olion käyttäjän syöttämillä arvoilla
+    
+    $attributes = (array(
+      'nimi' => $params['nimi'],
+      'valmistaja' => $params['valmistaja'],
+      'maa' => $params['maa']
+    ));
+
+    $brandi = new Brandi($attributes);
+    $errors = $brandi->errors();
+    
+     if(count($errors) > 0){
+      
+        View::make('/lisays/newb.html', array('errors' => $errors, 'attributes' => $attributes));
+      
+    }else{
+      
+    $brandi->save();
+
+         // Ohjataan käyttäjä lisäyksen jälkeen brandisto tietokannan esittelysivulle
+        Redirect::to('/brandi/' . $brandi->bra_id, array('message' => 'Brändi on lisätty astiasto tietokantaan.'));
+        }
+  
+  }
+  
+  // Astian muokkaaminen (lomakkeen käsittely)
+  public static function update($bra_id){
+    $params = $_POST;
+
+    $attributes = array(
+      'bra_id' => $bra_id,
+      'nimi' => $params['nimi'],
+      'valmistaja' => $params['valmistaja'],
+      'maa' => $params['maa']
+    );
+
+    // Alustetaan Brandi-olio käyttäjän syöttämillä tiedoilla
+    $brandi = new Brandi($attributes);
+    $errors = $brandi->errors();
+
+    if(count($errors) > 0){
+      
+        View::make('/brandi/muutosb.html', array('errors' => $errors, 'attributes' => $attributes));
+      
+    }else{
+      
+      $brandi->update();
+
+      Redirect::to('/brandi/' . $brandi->bra_id, array('message' => 'Brändi on nyt muokattu onnistuneesti!'));
+    }
+  }
+
+  // Brandin poistaminen
+  
+  public static function poista($bra_id){
+    // Alustetaan Brandi-olio annetulla bra_id:llä
+    $brandi = new Brandi(array('bra_id' => $bra_id));
+    // Kutsutaan Brandi-malliluokan metodia destroy, joka poistaa brandin sen bra_id:llä
+    $brandi->destroy();
+
+    // Ohjataan käyttäjä brandien  listaussivulle ilmoituksen kera
+    Redirect::to('/brandi/', array('message' => 'Brändi on  nyt poistettu onnistuneesti!'));
+  }  
+    
    }

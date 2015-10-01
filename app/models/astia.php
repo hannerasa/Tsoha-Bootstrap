@@ -9,6 +9,8 @@ class Astiat extends BaseModel{
   public $hinta;
   public $muoto;
   public $malli;
+  public $om_id;
+  public $om_id2;
   
 
   public function __construct($attributes){
@@ -19,7 +21,9 @@ class Astiat extends BaseModel{
             'validate_koko',
             'validate_hinta', 
             'validate_muoto',
-            'validate_malli'
+            'validate_malli',
+            'validate_om_id',
+            'validate_om_id2'
           );
   }
   
@@ -47,6 +51,12 @@ class Astiat extends BaseModel{
     public function validate_malli(){
         return parent::validate_string_length($this->malli, 4);
     }
+    public function validate_om_id(){
+        return parent::validate_string_length($this->om_id, 1);
+    }
+    public function validate_om_id2(){
+        return parent::validate_string_length($this->om_id2, 1);
+    }
 
  public static function all(){
     $query = DB::connection()->prepare('SELECT * FROM Astiat');
@@ -63,7 +73,9 @@ class Astiat extends BaseModel{
            'koko' => $row['koko'],
            'hinta' => $row['hinta'],
            'muoto' => $row['muoto'],
-           'malli' => $row['malli']
+           'malli' => $row['malli'],
+           'om_id' => $row['om_id'],
+           'om_id2' => $row['om_id2']
                    
         ));
     }
@@ -72,13 +84,15 @@ class Astiat extends BaseModel{
 
   public function save(){
     
-    $query = DB::connection()->prepare('INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli) RETURNING as_id');
+    $query = DB::connection()->prepare('INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli,om_id, om_id2) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli,:om_id,:om_id2) RETURNING as_id');
     $query->execute(array('nimi' => $this->nimi,
         'vari' => $this->vari,
         'koko' => $this->koko,
         'hinta' => $this->hinta,
         'muoto' => $this->muoto,
-        'malli' => $this->malli ));
+        'malli' => $this->malli, 
+        'om_id' => $this->om_id,
+        'om_id2' => $this->om_id2));
     
     $row = $query->fetch();
     $this->as_id = $row['as_id'];
@@ -96,7 +110,9 @@ class Astiat extends BaseModel{
         'koko' => $row['koko'],
         'hinta' => $row['hinta'],
         'muoto' => $row['muoto'],
-        'malli' => $row['malli']
+        'malli' => $row['malli'],
+        'om_id' => $row['om_id'],
+        'om_id2' => $row['om_id2'] 
         ));
        return $astia;
     }
@@ -104,18 +120,18 @@ class Astiat extends BaseModel{
     return null;
   } 
     public function update(){
-        $query = DB::connection()->prepare('UPDATE Astiat '
-                . 'SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli '
-                . 'WHERE as_id = :as_id');
-        $query->execute(array('nimi' => $this->nimi, 
+        $query = DB::connection()->prepare('UPDATE Astiat SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli, om_id = :om_id, om_id2 = :om_id2 WHERE as_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id,
+                              'nimi' => $this->nimi, 
                               'vari' => $this->vari, 
                               'koko' => $this->koko, 
                               'hinta' => $this->hinta, 
                               'muoto' => $this->muoto,
-                              'malli' => $this->malli, 
-                              'as_id' => $this->as_id));
+                              'malli' => $this->malli,
+                              'om_id' => $this->om_id,
+                              'om_id2' => $this->om_id2));
     }
-     
+        
      public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Astiat WHERE as_id = :as_id');
         $query->execute(array('as_id' => $this->as_id));

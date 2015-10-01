@@ -15,7 +15,7 @@ class Kayttaja extends BaseModel {
         $row = $query->fetch();
         if ( $row ){
             
-              $kayttaja = new Kayttaja(array(
+              $kayttaja = new Kayttaja(array('kayt_id' => $row ['kayt_id'],
                 'nimi' => $row['nimi'],
                 'rooli' => $row['rooli']
              ));
@@ -24,6 +24,21 @@ class Kayttaja extends BaseModel {
             
         }else{
              return null;
+        }
+    }
+    
+    public static function etsi($kayt_id){
+        $query = DB::connection()->prepare('SELECT * from Kayttaja where kayt_id = :kayt_id LIMIT 1');
+        $query->execute(array('kayt_id' => $kayt_id));
+        $row = $query->fetch();
+        if ( $row ){
+            $kayttaja = new Kayttaja(array('kayt_id' =>  $row['kayt_id'], 
+                                            'nimi' => $row['nimi'],
+                                            'rooli' => $row['rooli']));
+            
+            return $kayttaja;
+        }else{
+            return null;
         }
     }
 

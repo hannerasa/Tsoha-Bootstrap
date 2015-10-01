@@ -57,10 +57,34 @@
 // Brandi ohjaukset 
 
  
-    $routes->get('/brandi', function(){
-    BrandiController::listaa();
+   $routes->get('/brandi', function(){
+   BrandiController::listaa();
    });
    
   $routes->get('/brandi/:bra_id', function($bra_id){
   BrandiController::show($bra_id);  
   });
+ 
+  $routes->get('/brandi/:bra_id', function($bra_id){
+   BrandiController::show($bra_id);  
+   });
+  
+   $routes->get('/brandi/:bra_id/muokkaa', function($bra_id){
+   BrandiController::muokkaa($bra_id);  
+   });
+  
+   $routes->post('/brandi/:bra_id/muokkaa', function($bra_id){
+   BrandiController::update($bra_id);
+   });
+  
+   $routes->post('/brandi/:bra_id/poista', function($bra_id){
+   BrandiController::poista($bra_id); 
+   });
+  
+   $routes->post('/brandi', function(){
+   BrandiController::store();
+   });
+ 
+   $routes->get('/lisays/newb', function(){
+   BrandiController::create();
+   });
