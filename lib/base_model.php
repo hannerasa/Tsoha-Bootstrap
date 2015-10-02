@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
   class BaseModel{
     // "protected"-attribuutti on käytössä vain luokan ja sen perivien luokkien sisällä

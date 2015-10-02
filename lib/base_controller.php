@@ -17,10 +17,11 @@
        }
        
     }  
-
+     
     public static function check_logged_in(){
-      // Toteuta kirjautumisen tarkistus t채h채n.
-      // Jos k채ytt채j채 ei ole kirjautunut sis채채n, ohjaa h채net toiselle sivulle (esim. kirjautumissivulle).
-    }
+        if(!isset($_SESSION['kayttaja'])){
+        Redirect::to('/kirjautuminen', array('message' => 'Kirjaudu ensin sis狎n!'));
+     }
+   }
 
   }

@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 // Base -ohjaus
   $routes->get('/', function() {
@@ -21,6 +21,10 @@
   // Kirjautumisen käsittely
   UserController::handle_login();
   });
+  
+  $routes->post('/logout', function(){
+  UserController::logout();
+});
    
  
  // Astiat -ohjaukset

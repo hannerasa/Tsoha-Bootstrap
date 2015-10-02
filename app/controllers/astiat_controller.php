@@ -94,14 +94,13 @@ class AstiatController extends BaseController{
     }
   }
 
-  // Astian poistaminen
-  public static function poista($as_id){
-    // Alustetaan Astiat-olio annetulla as_id:llä
-    $astia = new Astiat(array('as_id' => $as_id));
-    // Kutsutaan Astia-malliluokan metodia destroy, joka poistaa astian sen as_id:llä
-    $astia->destroy();
+    // Astian poistaminen
+   public static function poista($as_id){
+     self::check_logged_in();
+    
+     $astia = new Astiat(array('as_id' => $as_id));
+     $astia->destroy();
 
-    // Ohjataan käyttäjän astioiden  listaussivulle ilmoituksen kera
-    Redirect::to('/astia', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
-  }
+     Redirect::to('/astia', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
+   }
 }

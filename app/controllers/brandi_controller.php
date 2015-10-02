@@ -87,12 +87,11 @@ class BrandiController extends BaseController{
   // Brandin poistaminen
   
   public static function poista($bra_id){
-    // Alustetaan Brandi-olio annetulla bra_id:llÃ¤
+    self::check_logged_in();
+   
     $brandi = new Brandi(array('bra_id' => $bra_id));
-    // Kutsutaan Brandi-malliluokan metodia destroy, joka poistaa brandin sen bra_id:llä
     $brandi->destroy();
 
-    // Ohjataan käyttäjän brandien  listaussivulle ilmoituksen kera
     Redirect::to('/brandi', array('message' => 'Brändi on  nyt poistettu onnistuneesti!'));
   }  
     

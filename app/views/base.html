@@ -40,13 +40,29 @@
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
             <li><a href="{{ base_path }}/astia">Astioiden listaus</a></li>
-            <li><a href="{{ base_path }}/lisays/new">Astian lisäys</a></li>
-            <li><a href="{{ base_path }}/lisays/newb">Brandin lisäys</a></li>
+            <li><a href="{{ base_path }}/lisays/new">Astian lisäys</a></li>         
             <li><a href="{{ base_path }}/brandi">Brändien listaus</a></li>
+            <li><a href="{{ base_path }}/lisays/newb">Brandin lisäys</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          
+          
+        {% if user_logged_in %}
+   
+        <form class="navbar-form navbar-right" method="post" action="{base_path}}/logout">
+          <button type="submit" class="btn btn-default">Kirjaudu ulos</button>
+        </form> 
+    <!--          
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ base_path }}/logout">Kirjaudu ulos</a></li>
+        </ul> -->
+        
+        {% else %}
+       <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ base_path }}/kirjautuminen">Sisäänkirjautuminen</a></li>
-          </div>
+        </ul>
+        {% endif %}
+          
+        </div>
           
         <!--  <p class="ingressi"> Astiasto </p>
 
