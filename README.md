@@ -9,14 +9,18 @@ Yleisiä linkkejä:
 
 Ääkköset ei toimi. 
 
-Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä, ohjaus eteenpäin ei toimi ihan oikein.
+Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä.
 
-Listaukset: astia ja brändi toimii sekä astian tietojen tarkastelu. 
-Astian muokkaus, lisäys ja poisto toimii, mutta poiston paluu ei toimi vielä oikein.
+Listaukset: astia ja brändi toimii sekä niiden tietojen tarkastelu. 
+Astian ja brandin muokkaus, lisäys ja poisto toimii. Poiston voi tehdä vain jos on kirjautuneena sisään.
 
 Käyttäjätunnus: testaaja, Salasana: sala1804
 
+Uloskirjautuminen ei vielä toimi oikein.
+
 ## Työn aihe
 
-Astiatietokannan tarkoitus on helpottaa erilaisten astiastojen erillisten astioiden omistamissuhteiden ja lukumäärientietoisuutta sekä kertoa minkälaisia erilaisia astioita kuuluu astiastoon. 
-Astiastotietokantaan voi kirjautua selaamaan astioiden erilaisia luokittelutekijöitä, omistajuuksia sekä lisäämään, poistamaan ja muokkaamaan astioita, käyttäjiä ja brändejä.
+Astiatietokannan tarkoitus on helpottaa erilaisten astiastojen erillisten astioiden omistamissuhteiden ja lukumäärientietoisuutta 
+sekä kertoa minkälaisia erilaisia astioita kuuluu astiastoon. 
+Astiastotietokantaan voi kirjautua selaamaan astioiden erilaisia omistajuuksia ja brändejä 
+sekä lisäämään, poistamaan ja muokkaamaan astioita ja niiden brändejä.
