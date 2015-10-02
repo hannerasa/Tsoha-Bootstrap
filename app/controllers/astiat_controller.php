@@ -40,7 +40,9 @@ class AstiatController extends BaseController{
       'koko' => $params['koko'],
       'hinta' => $params['hinta'],
       'muoto' => $params['muoto'],
-      'malli' => $params['malli']      
+      'malli' => $params['malli'],
+      'om_id' => $params['om_id'],
+      'om_id2' => $params['om_id2']    
     ));
 
     $astia = new Astiat($attributes);
@@ -54,7 +56,7 @@ class AstiatController extends BaseController{
       
     $astia->save();
 
-         // Ohjataan käyttäjä lisäyksen jälkeen astiasto tietokannan esittelysivulle
+         // Ohjataan käyttäjän lisäyksen jälkeen astiasto tietokannan esittelysivulle
         Redirect::to('/astia/' . $astia->as_id, array('message' => 'Astia on lisätty astiasto tietokantaan.'));
         }
   
@@ -71,7 +73,9 @@ class AstiatController extends BaseController{
       'koko' => $params['koko'],  
       'hinta' => $params['hinta'],
       'muoto' => $params['muoto'],
-      'malli' => $params['malli']
+      'malli' => $params['malli'],
+      'om_id' => $params['om_id'],
+      'om_id2' => $params['om_id2'] 
     );
 
     // Alustetaan Astia-olio käyttäjän syöttämillä tiedoilla
@@ -97,7 +101,7 @@ class AstiatController extends BaseController{
     // Kutsutaan Astia-malliluokan metodia destroy, joka poistaa astian sen as_id:llä
     $astia->destroy();
 
-    // Ohjataan käyttäjä astioiden  listaussivulle ilmoituksen kera
-    Redirect::to('/astia/', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
+    // Ohjataan käyttäjän astioiden  listaussivulle ilmoituksen kera
+    Redirect::to('/astia', array('message' => 'Astia on  nyt poistettu onnistuneesti!'));
   }
 }
