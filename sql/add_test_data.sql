@@ -1,20 +1,34 @@
--- Kayttaja-taulun testidata
-INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Hannele', 'sala123', '10');
-INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Pekka', 'sala456', '20');
+Ôªø-- Kayttaja-taulun testidata
+INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Sonja', 'sala222', '10');
+INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Veikko', 'sala888', '20');
 
 -- Astiat-taulun testidata
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Lautanen', 'Harmaa','21 cm',' 15 Ä','Pyˆre‰','Syv‰');
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Kuppi', 'Vaalean Harmaa','21 cm', '12 Ä', 'Pyˆre‰', 'Syv‰');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Lautanen', 'Harmaa','21 cm',' 15 ‚Ç¨','Py√∂re√§','Matala');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Kuppi', 'Vaalean Harmaa','21 cm', '12 ‚Ç¨', 'Py√∂re√§', 'Syv√§');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Peltipurkki', 'Vihre√§','49 cm', '12 ‚Ç¨', 'Py√∂re√§','Syv√§');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Vati', 'Sininen','49 cm', '55 ‚Ç¨', 'Py√∂re√§','Syv√§'); 
 
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto,malli) VALUES ('Kuppi', 'Vihre‰','2 dl', '12 Ä', 'Pyˆre‰','Syv‰'); 
 
 -- Astiat-taulun testidata
-INSERT INTO Brandi (nimi) VALUES ('Teema');
-INSERT INTO Brandi (nimi) VALUES ('Taika');
+INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Teema', 'Iittala','Suomi');
+INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Taika''Arabia','Suomi');
+INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Ostindia''R√∂strand','Ruotsi');
 
--- Luokittelu taulun testidata
-INSERT INTO Luokittelu (nimi, arvo) VALUES ('vari', 'Harmaa');
-INSERT INTO Luokittelu (nimi, arvo) VALUES ('koko', '21 cm');
-INSERT INTO Luokittelu (nimi, arvo) VALUES ('hinta', '15 cm');
-INSERT INTO Luokittelu (nimi, arvo) VALUES ('muoto', 'pyˆre‰');
-INSERT INTO Luokittelu (nimi, arvo) VALUES ('malli', 'syv‰');
+
+-- Brandi_Astiat testidata
+INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat where nimi='Lautanen'),(select id from Brandi where nimi='Teema'));
+INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat where nimi='Kuppi'),(select id from Brandi where nimi='Teema'));
+INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat where nimi='Peltipurkki'),(select id from Brandi where nimi='Taika'));
+INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat where nimi='Vati'),(select id from Brandi where nimi='Ostindia'));
+
+-- Omistaja-taulun testidata
+INSERT INTO Omistaja (nimi) VALUES ('Soili');
+INSERT INTO Omistaja (nimi) VALUES ('Ida');
+INSERT INTO Omistaja (nimi) VALUES ('Hannele');
+
+
+-- Omistaja_Astiat testidata
+INSERT INTO Omistaja_Astiat(asom_id, omas_id) VALUES ((select id from Astiat where nimi='Lautanen'),(select id from Omistaja where nimi='Hannele'));
+INSERT INTO Omistaja_Astiat(asom_id, omas_id) VALUES ((select id from Astiat where nimi='Kuppi'),(select id from Omistaja where nimi='Ida'));
+INSERT INTO Omistaja_Astiat(asom_id, omas_id) VALUES ((select id from Astiat where nimi='Peltipurkki'),(select id from Omistaja where nimi='Soili'));
+INSERT INTO Omistaja_Astiat(asom_id, omas_id) VALUES ((select id from Astiat where nimi='Vati'),(select id from Omistja where nimi='Soili'));

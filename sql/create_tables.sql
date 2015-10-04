@@ -1,4 +1,4 @@
-CREATE TABLE Kayttaja(
+﻿CREATE TABLE Kayttaja(
   kayt_id SERIAL PRIMARY KEY, 
   nimi varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
@@ -30,7 +30,12 @@ CREATE TABLE Omistaja(
   );
 
 CREATE TABLE Omistaja_Astiat(
-    om_id INTEGER REFERENCES Omistaja(om_id),
-    as_id INTEGER REFERENCES Astiat(as_id),
+    omas_id INTEGER REFERENCES Omistaja(om_id),
+    asom_id INTEGER REFERENCES Astiat(as_id),
+  );
+
+CREATE TABLE Brandi_Astiat(
+    braas_id INTEGER REFERENCES Brandi(bra_id),
+    asbra_id INTEGER REFERENCES Astiat(as_id),
   );
 

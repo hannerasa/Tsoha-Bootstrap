@@ -16,6 +16,7 @@ class BrandiController extends BaseController{
     }
        
    public static function muokkaa($bra_id){
+       self::check_logged_in();
       
         $brandi = Brandi::find($bra_id);
         View::make('brandi/muutosb.html', array('brandi' => $brandi));

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Astiat extends BaseModel{
  
@@ -11,6 +11,7 @@ class Astiat extends BaseModel{
   public $malli;
   public $om_id;
   public $om_id2;
+  public $brandit;
   
 
   public function __construct($attributes){
@@ -75,7 +76,8 @@ class Astiat extends BaseModel{
            'muoto' => $row['muoto'],
            'malli' => $row['malli'],
            'om_id' => $row['om_id'],
-           'om_id2' => $row['om_id2']
+           'om_id2' => $row['om_id2'],
+           'brandit' => Brandi::findBrandi($row['as_id'])    
                    
         ));
     }
@@ -112,7 +114,9 @@ class Astiat extends BaseModel{
         'muoto' => $row['muoto'],
         'malli' => $row['malli'],
         'om_id' => $row['om_id'],
-        'om_id2' => $row['om_id2'] 
+        'om_id2' => $row['om_id2'],
+        'brandit' => Brandi::findBrandi($as_id)  
+          
         ));
        return $astia;
     }

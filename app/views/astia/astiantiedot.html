@@ -22,12 +22,27 @@
  
   <h3>Astian tiedot</h3>
   <ul>
-    <li><strong>Väri: </strong>{{astia.vari}}</li>
+    <li><strong>Vari: </strong>{{astia.vari}}</li>
     <li><strong>Koko: </strong>{{astia.koko}}</li>
     <li><strong>Hinta: </strong>{{astia.hinta}}</li>
     <li><strong>Muoto: </strong>{{astia.muoto}}</li>
     <li><strong>Malli: </strong>{{astia.malli}}</li>
-  </ul>
+   </ul>
+  <div>
+      <h3>Astian brandi</h3>
+      
+       {% for brandi in astia.brandit %} 
+       
+      {{brandi.nimi}}
+      
+       {% endfor %}
+  </div>
+  
+   <h3>Astian omistaja</h3>
+  <ul>
+    <li><strong>Omistaja: </strong>{{astia.om_id}}</li>
+    <li><strong>Toinen omistaja </strong>{{astia.om_id2}}</li>
+   </ul>
       
   </div>  
  

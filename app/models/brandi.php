@@ -73,7 +73,6 @@ class Brandi extends BaseModel{
         ));
        return $brandi;
     }
-
     return null;
   } 
   
@@ -88,6 +87,22 @@ class Brandi extends BaseModel{
      public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Brandi WHERE bra_id = :bra_id');
         $query->execute(array('bra_id' => $this->bra_id));
+    }
+    
+     public static function findBrandi($as_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Brandi '
+                . 'JOIN Brandi_Astiat ON Brandi.bra_id = Brandi_Astiat.braas_id '
+                . 'WHERE Brandi_Astiat.asbra_id = :as_id');
+        $query->execute(array('as_id' => $as_id));
+        $rows = $query->fetchAll();
+        $brandit = array();
+        foreach ($rows as $row) {
+            $brandit[] = new Brandi(array(
+                'bra_id' => $row['bra_id'],
+                'nimi' => $row['nimi']
+            ));
+        }
+        return $brandit;
     }
 
 }

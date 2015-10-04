@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Brandi</h1>
+  
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Valmistaja</th>
+            <th>Maa</th> 
+        </tr>
+    </thead>
+    
+    <tbody>
+        <!-- Brändi listaus -->
+        {% for brandi in brandit %}
+        <tr>
+            <td><a href="{{base_path}}/brandi/{{brandi.bra_id}}">{{brandi.nimi}}</a></td>
+            <td>{{brandi.valmistaja}}</td>
+            <td>{{brandi.maa}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
