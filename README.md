@@ -1,4 +1,4 @@
-﻿# Tietokantasovelluksen esittelysivu
+# Tietokantasovelluksen esittelysivu
 
 Yleisiä linkkejä:
 
@@ -7,16 +7,15 @@ Yleisiä linkkejä:
 
 ## HUOM
 
-Ääkköset ei toimi. 
+Ääkköset ei toimi, kuin base.html sivulla. Joten ei käytetä muualla.
 
 Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä.
 
 Listaukset: astia ja brändi toimii sekä niiden tietojen tarkastelu. 
 Astian ja brandin muokkaus, lisäys ja poisto toimii. Poiston voi tehdä vain jos on kirjautuneena sisään.
+Astat listaukseen ja astiat tietoihin joinattu brändin nimi tieto.
 
 Käyttäjätunnus: testaaja, Salasana: sala1804
-
-Uloskirjautuminen ei vielä toimi oikein.
 
 ## Työn aihe
 
@@ -24,3 +23,4 @@ Astiatietokannan tarkoitus on helpottaa erilaisten astiastojen erillisten astioi
 sekä kertoa minkälaisia erilaisia astioita kuuluu astiastoon. 
 Astiastotietokantaan voi kirjautua selaamaan astioiden erilaisia omistajuuksia ja brändejä 
 sekä lisäämään, poistamaan ja muokkaamaan astioita ja niiden brändejä.
+
