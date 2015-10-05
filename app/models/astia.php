@@ -137,6 +137,10 @@ class Astiat extends BaseModel{
     }
         
      public function destroy() {
+         
+        $query = DB::connection()->prepare('DELETE from Brandi_Astiat where asbra_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id)); 
+        
         $query = DB::connection()->prepare('DELETE FROM Astiat WHERE as_id = :as_id');
         $query->execute(array('as_id' => $this->as_id));
     }
