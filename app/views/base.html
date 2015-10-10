@@ -7,14 +7,13 @@
 
     <title>
       {% block title %}
-        Tietokantasovellus
+        Astiastotietokanta
       {% endblock %}
     </title>
 
     {% block head %}
       <!-- Bootstrap (tyylitiedosto) -->
       <link href="{{base_path}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
       <!-- Oma tyylitiedostomme -->
       <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
     {% endblock %}
@@ -47,34 +46,22 @@
           
           
         {% if user_logged_in %}
-   
         <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
           <button type="submit" class="btn btn-default">Kirjaudu ulos</button>
-        </form> 
-    <!--          
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ base_path }}/logout">Kirjaudu ulos</a></li>
-        </ul> -->
+        </form>
         
         {% else %}
-       <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ base_path }}/kirjautuminen">Sisäänkirjautuminen</a></li>
         </ul>
         {% endif %}
           
         </div>
           
-        <!--  <p class="ingressi"> Astiasto </p>
-
-	<p class="oikea"><img src="{{base_bath}}/astiat/teema_harmaa.jpg" width="210" height="180" alt="Astiasto"/>
-        <p class="oikea"><img src="c:/users/hanne/pictures/teema_harmaa.jpg" width="210" height="180" alt="Astiasto"/> -->
-          
       </div>
     </nav>
 
     <div id="main-container">
-        
-        <div id="main-container">
     {% if message %}
     <div class="alert alert-success">
         <ul>
@@ -99,20 +86,16 @@
         </ul>
     </div>
     {% endif %}
-      <!-- Dynaaminen sisältö tulee tähän -->
-      
-      
-      
+    
+      <!-- Dynaaminen sisältö tulee tähän -->      
       {% block content %}{% endblock %}
     </div>
 
     {% block body %}
       <!-- jQuery -->
       <script src="{{base_path}}/vendor/jquery.min.js"></script>
-
       <!-- Bootstrap (skriptitiedosto) -->
       <script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
-
       <!-- Oma skriptitiedostomme -->
       <script src="{{base_path}}/assets/js/site.js"></script>
     {% endblock %}

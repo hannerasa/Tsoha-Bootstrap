@@ -1,34 +1,34 @@
-ï»¿<?php
+<?php
 
 // Base -ohjaus
   $routes->get('/', function() {
     HelloWorldController::index();
   });
 
-  // Hiekkalaatikko -ohjaus
+// Hiekkalaatikko -ohjaus
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
   
   
-  // kirjautumis -ohjaukset
+// Kirjautumis -ohjaukset
+  
+// Kirjautumislomakkeen esittäminen  
    $routes->get('/kirjautuminen', function(){
-  // Kirjautumislomakkeen esittäminen
     UserController::login();
    });
 
-  $routes->post('/kirjautuminen', function(){
-  // Kirjautumisen käsittely
-  UserController::handle_login();
-  });
+// Kirjautumisen käsittely
+   $routes->post('/kirjautuminen', function(){
+   UserController::handle_login();
+   });
   
-  $routes->post('/logout', function(){
-  UserController::logout();
-});
+// Uloskirjautuminen  
+   $routes->post('/logout', function(){
+   UserController::logout();
+   });
    
- 
- // Astiat -ohjaukset
- 
+// Astiat -ohjaukset
  
    $routes->get('/astia', function(){
    AstiatController::listaa();
@@ -60,16 +60,15 @@
 
 // Brandi ohjaukset 
 
- 
    $routes->get('/brandi', function(){
    BrandiController::listaa();
    });
    
-  $routes->get('/brandi/:bra_id', function($bra_id){
-  BrandiController::show($bra_id);  
-  });
+   $routes->get('/brandi/:bra_id', function($bra_id){
+   BrandiController::show($bra_id);  
+   });
  
-  $routes->get('/brandi/:bra_id', function($bra_id){
+   $routes->get('/brandi/:bra_id', function($bra_id){
    BrandiController::show($bra_id);  
    });
   

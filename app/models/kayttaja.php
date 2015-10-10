@@ -1,5 +1,6 @@
 <?php
 
+// Astiastotietokannan käyttäjä-tietokohteen mallit
 
 class Kayttaja extends BaseModel {
     
@@ -8,6 +9,8 @@ class Kayttaja extends BaseModel {
     public $password;
     public $rooli;
 
+    // Autentikoi käyttäjän
+    
     public static function authenticate($nimi, $password){
         
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE nimi = :nimi and password = :password LIMIT 1');
@@ -18,7 +21,7 @@ class Kayttaja extends BaseModel {
               $kayttaja = new Kayttaja(array('kayt_id' => $row ['kayt_id'],
                 'nimi' => $row['nimi'],
                 'rooli' => $row['rooli']
-             ));
+            ));
             
             return $kayttaja;
             
@@ -27,6 +30,8 @@ class Kayttaja extends BaseModel {
         }
     }
     
+    // Etsii käyttäjän
+    
     public static function etsi($kayt_id){
         $query = DB::connection()->prepare('SELECT * from Kayttaja where kayt_id = :kayt_id LIMIT 1');
         $query->execute(array('kayt_id' => $kayt_id));
@@ -34,13 +39,12 @@ class Kayttaja extends BaseModel {
         if ( $row ){
             $kayttaja = new Kayttaja(array('kayt_id' =>  $row['kayt_id'], 
                                             'nimi' => $row['nimi'],
-                                            'rooli' => $row['rooli']));
+                                            'rooli' => $row['rooli']
+            ));
             
             return $kayttaja;
         }else{
             return null;
         }
-    }
-
-   
+    }  
 }
