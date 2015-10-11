@@ -11,16 +11,19 @@ Yleisiä linkkejä:
 
 Sisäänkirjautuminen toimii ja tunnistaa onko oikea käyttäjä kyseessä.
 
-Listaukset: astia ja brändi toimii sekä niiden tietojen tarkastelu. 
-Astian ja brandin muokkaus, lisäys ja poisto toimii. Poiston voi tehdä vain jos on kirjautuneena sisään.
-Astat listaukseen ja astiat tietoihin joinattu brändin nimi tieto.
+Brändin tietojen listaus.
+Astiat listaukseen ja astiat tietoihin joinattu brändin sekä omistajan nimi -tiedot.
+
+Astian ja brandin muokkaus, lisäys ja poisto toimii, jotka voi tehdä vain jos on kirjautuneena sisään.
+Astian lisäyksessä ja muokkauksessa muokataan myös astian brändi ja omistaja -tietoa.
 
 Käyttäjätunnus: testaaja, Salasana: sala1804
+Käyttäjätunnus: Hannele, Salasana: sala123
 
 ## Työn aihe
 
 Astiatietokannan tarkoitus on helpottaa erilaisten astiastojen erillisten astioiden omistamissuhteiden ja lukumäärientietoisuutta 
-sekä kertoa minkälaisia erilaisia astioita kuuluu astiastoon. 
+sekä kertoa minkälaisia astioita astiastoon kuuluu . 
+
 Astiastotietokantaan voi kirjautua selaamaan astioiden erilaisia omistajuuksia ja brändejä 
 sekä lisäämään, poistamaan ja muokkaamaan astioita ja niiden brändejä.
-
