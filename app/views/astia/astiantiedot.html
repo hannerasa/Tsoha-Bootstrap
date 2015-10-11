@@ -2,48 +2,42 @@
 {% import "macros/forms.html" as forms %}
 {% block content %}
 
-      
- <!--{% if user_logged_in %} 
-       
- <div class="alert alert-success">
-  {{message}}
-</div>
-  <!-- Painikkeet tähän -->
-   <!--    {% endif %} -->
-   
   <p>
-     <a href="{{base_path}}/astia/{{astia.as_id}}/muokkaa" class="btn btn-success">Muokkaa</a> {{forms.poisto_nappi("#{base_path}/astia/#{astia.as_id}/poista")}}
- 
+     <a href="{{base_path}}/astia/{{astia.as_id}}/muokkaa" class="btn btn-success">Muokkaa</a> {{forms.poisto_nappi("#{base_path}/astia/#{astia.as_id}/poista")}} 
   </p>
+  
   <div>
       
    <h1>{{astia.nimi}}</h1>   
-  <!-- Tiedot tulee listana tähän -->
  
-  <h3>Astian tiedot</h3>
-  <ul>
-    <li><strong>Vari: </strong>{{astia.vari}}</li>
-    <li><strong>Koko: </strong>{{astia.koko}}</li>
-    <li><strong>Hinta: </strong>{{astia.hinta}}</li>
-    <li><strong>Muoto: </strong>{{astia.muoto}}</li>
-    <li><strong>Malli: </strong>{{astia.malli}}</li>
-   </ul>
-  <div>
-      <h3>Astian brandi</h3>
+   <h3>Astian tiedot</h3>
+    <ul>
+      <li><strong>Vari: </strong>{{astia.vari}}</li>
+     <li><strong>Koko: </strong>{{astia.koko}}</li>
+     <li><strong>Hinta: </strong>{{astia.hinta}}</li>
+     <li><strong>Muoto: </strong>{{astia.muoto}}</li>
+      <li><strong>Malli: </strong>{{astia.malli}}</li>
+     </ul>
+  <div> 
       
-       {% for brandi in astia.brandit %} 
-       
-      {{brandi.nimi}}
+    <h3>Astian brandi</h3>
       
+       {% for brandi in astia.brandit %}        
+      <ul>
+      <li><strong>Brandi: </strong>{{brandi.nimi}}</li> 
+      </ul> 
        {% endfor %}
+     
   </div>
   
-   <h3>Astian omistaja</h3>
-  <ul>
-    <li><strong>Omistaja: </strong>{{astia.om_id}}</li>
-    <li><strong>Toinen omistaja </strong>{{astia.om_id2}}</li>
-   </ul>
-      
-  </div>  
+  <div>
+    <h3>Astian omistaja</h3>
+   
+       {% for omistaja in astia.omistajat %}         
+      <ul>
+      <li><strong>Omistaja: </strong>{{omistaja.nimi}}</li>      
+      </ul>       
+    {% endfor %}
+   </div>    
  
 {% endblock %}

@@ -1,6 +1,6 @@
 <?php
 
-// Astiastotietokannan brändi-tietokohteen mallit
+// Astiastotietokannan astia-tietokohteen mallit
 
 class Astiat extends BaseModel{
  
@@ -11,9 +11,8 @@ class Astiat extends BaseModel{
    public $hinta;
    public $muoto;
    public $malli;
-   public $om_id;
-   public $om_id2;
-   public $brandit;
+   public $omistajat = array();
+   public $brandit = array();
   
 
     public function __construct($attributes){
@@ -24,9 +23,7 @@ class Astiat extends BaseModel{
             'validate_koko',
             'validate_hinta', 
             'validate_muoto',
-            'validate_malli',
-            'validate_om_id',
-            'validate_om_id2'
+            'validate_malli'
         );
     }
   
@@ -55,13 +52,7 @@ class Astiat extends BaseModel{
     public function validate_malli(){
         return parent::validate_string_length($this->malli, 4);
     }
-    public function validate_om_id(){
-        return parent::validate_string_length($this->om_id, 1);
-    }
-    public function validate_om_id2(){
-        return parent::validate_string_length($this->om_id2, 1);
-    }
-
+  
     // Hakee kaikki astiat taulusta
     
     public static function all(){
@@ -80,8 +71,7 @@ class Astiat extends BaseModel{
                'hinta' => $row['hinta'],
                'muoto' => $row['muoto'],
                'malli' => $row['malli'],
-               'om_id' => $row['om_id'],
-               'om_id2' => $row['om_id2'],
+               'omistajat' => Omistaja::findOmistaja($row['as_id']),
                'brandit' => Brandi::findBrandi($row['as_id'])              
             ));
         }
@@ -91,20 +81,50 @@ class Astiat extends BaseModel{
     // Tallentaa astian tiedot Astiat-tauluun
     
     public function save(){
-    
-        $query = DB::connection()->prepare('INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli,om_id, om_id2) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli,:om_id,:om_id2) RETURNING as_id');
+   
+        $query = DB::connection()->prepare('INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES (:nimi,:vari,:koko,:hinta,:muoto,:malli) RETURNING as_id');
         $query->execute(array('nimi' => $this->nimi,
             'vari' => $this->vari,
             'koko' => $this->koko,
             'hinta' => $this->hinta,
             'muoto' => $this->muoto,
-            'malli' => $this->malli, 
-            'om_id' => $this->om_id,
-            'om_id2' => $this->om_id2));
-    
+            'malli' => $this->malli      
+            ));
+        
         $row = $query->fetch();
         $this->as_id = $row['as_id'];
+        
+        foreach ($this->brandit as $brandi){
+        $this->saveAstianBrandi($brandi, $row['as_id']);
+        }
+        
+        foreach ($this->omistajat as $omistaja){
+        $this->saveAstianOmistaja($omistaja, $row['as_id']);
+        
+        }
+    
     }
+    // Tallentaa astian brandi -tiedon Brandi_Astiat tauluun
+    
+    public function saveAstianBrandi($brandi, $as_id) {        
+           
+        $query = DB::connection()->prepare ('INSERT INTO Brandi_Astiat (asbra_id, braas_id) VALUES (:asbra_id, :braas_id)');
+        $query->execute(array(
+            'asbra_id' => $as_id,
+            'braas_id' => $brandi
+            ));                
+    }  
+      
+    // Tallentaa astian omistaja -tiedon Omistaja_Astiat tauluun
+    
+    public function saveAstianOmistaja($omistaja, $as_id) {        
+           
+        $query = DB::connection()->prepare ('INSERT INTO Omistaja_Astiat (asom_id, omas_id) VALUES (:asom_id, :omas_id)');
+        $query->execute(array(
+            'asom_id' => $as_id,
+            'omas_id' => $omistaja
+            ));                
+    }  
     
     // Etsii astian
     
@@ -122,8 +142,7 @@ class Astiat extends BaseModel{
             'hinta' => $row['hinta'],
             'muoto' => $row['muoto'],
             'malli' => $row['malli'],
-            'om_id' => $row['om_id'],
-            'om_id2' => $row['om_id2'],
+            'omistajat' => Omistaja::findOmistaja($as_id),    
             'brandit' => Brandi::findBrandi($as_id)  
           
         ));
@@ -132,27 +151,46 @@ class Astiat extends BaseModel{
         return null;
     } 
     
-    // Astiatn muutos
+    // Astian ja astian brädin + omistajan muutos
     
     public function update(){
-        $query = DB::connection()->prepare('UPDATE Astiat SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli, om_id = :om_id, om_id2 = :om_id2 WHERE as_id = :as_id');
+ 
+        $query = DB::connection()->prepare('UPDATE Astiat SET nimi = :nimi, vari = :vari, koko = :koko, hinta = :hinta, muoto = :muoto, malli = :malli WHERE as_id = :as_id');
         $query->execute(array('as_id' => $this->as_id,
                               'nimi' => $this->nimi, 
                               'vari' => $this->vari, 
                               'koko' => $this->koko, 
                               'hinta' => $this->hinta, 
                               'muoto' => $this->muoto,
-                              'malli' => $this->malli,
-                              'om_id' => $this->om_id,
-                              'om_id2' => $this->om_id2));
+                              'malli' => $this->malli)) ;
+               
+        $row = $query->fetch();
+        
+        $query = DB::connection()->prepare('DELETE FROM Brandi_Astiat where asbra_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id));
+        $row = $query->fetch();
+        
+        foreach ($this->brandit as $brandi){
+            $this->saveAstianBrandi($brandi, $this->as_id);
+        }
+        $query = DB::connection()->prepare('DELETE FROM Omistaja_Astiat where asom_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id));
+        $row = $query->fetch();
+        
+        foreach ($this->omistajat as $omistaja){
+            $this->saveAstianOmistaja($omistaja, $this->as_id);
+        }     
     }
-   
-    // Astiat poisto
+        
+    // Astiat poisto + yhteydet brändi ja omistaja poisto
     
     public function destroy() {
          
         $query = DB::connection()->prepare('DELETE from Brandi_Astiat where asbra_id = :as_id');
         $query->execute(array('as_id' => $this->as_id)); 
+        
+        $query = DB::connection()->prepare('DELETE from Omistaja_Astiat where asom_id = :as_id');
+        $query->execute(array('as_id' => $this->as_id));
         
         $query = DB::connection()->prepare('DELETE FROM Astiat WHERE as_id = :as_id');
         $query->execute(array('as_id' => $this->as_id));

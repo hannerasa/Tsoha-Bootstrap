@@ -1,18 +1,18 @@
-Ôªø-- Kayttaja-taulun testidata
+-- Kayttaja-taulun testidata
 INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Sonja', 'sala222', '10');
 INSERT INTO Kayttaja (nimi, password, rooli) VALUES ('Veikko', 'sala888', '20');
 
 -- Astiat-taulun testidata
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Lautanen', 'Harmaa','21 cm',' 15 ‚Ç¨','Py√∂re√§','Matala');
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Kuppi', 'Vaalean Harmaa','21 cm', '12 ‚Ç¨', 'Py√∂re√§', 'Syv√§');
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Peltipurkki', 'Vihre√§','49 cm', '12 ‚Ç¨', 'Py√∂re√§','Syv√§');
-INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Vati', 'Sininen','49 cm', '55 ‚Ç¨', 'Py√∂re√§','Syv√§'); 
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Lautanen', 'Harmaa','21 cm',' 15 Ä','Pyˆre‰','Matala');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Kuppi', 'Vaalean Harmaa','21 cm', '12 Ä', 'Pyˆre‰', 'Syv‰');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Peltipurkki', 'Vihre‰','49 cm', '12 Ä', 'Pyˆre‰','Syv‰');
+INSERT INTO Astiat (nimi, vari, koko, hinta, muoto, malli) VALUES ('Vati', 'Sininen','49 cm', '55 Ä', 'Pyˆre‰','Syv‰'); 
 
 
 -- Astiat-taulun testidata
 INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Teema', 'Iittala','Suomi');
 INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Taika''Arabia','Suomi');
-INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Ostindia''R√∂strand','Ruotsi');
+INSERT INTO Brandi (nimi, valmistaja, maa) VALUES ('Ostindia''Rˆstrand','Ruotsi');
 
 
 -- Brandi_Astiat testidata
@@ -22,9 +22,9 @@ INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat whe
 INSERT INTO Brandi_Astiat(asbra_id, braas_id) VALUES ((select id from Astiat where nimi='Vati'),(select id from Brandi where nimi='Ostindia'));
 
 -- Omistaja-taulun testidata
-INSERT INTO Omistaja (nimi) VALUES ('Soili');
-INSERT INTO Omistaja (nimi) VALUES ('Ida');
-INSERT INTO Omistaja (nimi) VALUES ('Hannele');
+INSERT INTO Omistaja (nimi, puhelin) VALUES ('Soili', '72665481');
+INSERT INTO Omistaja (nimi, puhelin) VALUES ('Ida', '9437878');
+INSERT INTO Omistaja (nimi, puhelin) VALUES ('Hannele', '84236642');
 
 
 -- Omistaja_Astiat testidata

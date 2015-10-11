@@ -18,39 +18,58 @@ class AstiatController extends BaseController{
         View::make('astia/astiantiedot.html', array('astia' => $astia));
     }
     
+    // Muokkaa astiaa
+    
     public static function muokkaa($as_id){
         self::check_logged_in();
-        $astia = Astiat::find($as_id);
-        View::make('astia/muutos.html', array('astia' => $astia));
+        $omistajat = Omistaja::all();
+        $brandit = Brandi::all();
+        $astia = Astiat::find($as_id);    
+        View::make('astia/muutos.html', array('astia' => $astia, 'brandit' => $brandit,'omistajat' => $omistajat ));
     }
     
     // Uuden astian lisäys, vain sisäänkirjautuneena
     
     public static function create(){
         self::check_logged_in();
-        View::make('lisays/new.html');
+        $omistajat = Omistaja::all();
+        $brandit = Brandi::all();
+        View::make('lisays/new.html', array('brandit' => $brandit,'omistajat' => $omistajat ));
     }
+    
+    // Tallentaa astian + yhteydet brändiin ja omistajaan
     
     public static function store(){
    
         $params = $_POST;
         
-        $attributes = (array(
+        $brandit = $params ['brandit'];
+        $omistajat = $params ['omistajat'];
+        
+        $attributes = array(
           'nimi' => $params['nimi'],
           'vari' => $params['vari'],
           'koko' => $params['koko'],
           'hinta' => $params['hinta'],
           'muoto' => $params['muoto'],
           'malli' => $params['malli'],
-          'om_id' => $params['om_id'],
-          'om_id2' => $params['om_id2']    
-        ));
+          'brandit' => array(), 
+          'omistajat' => array() 
+        );
 
+        foreach($brandit as $brandi){
+        $attributes['brandit'][] = $brandi;                
+      }
+      
+        foreach($omistajat as $omistaja){
+        $attributes['omistajat'][] = $omistaja;                
+      }
+        
         $astia = new Astiat($attributes);
         $errors = $astia->errors();
-    
+        
         if(count($errors) > 0){
-        View::make('/lisays/new.html', array('errors' => $errors, 'attributes' => $attributes));
+        View::make('/lisays/new.html', array('errors' => $errors, 'attributes' => $attributes, 'brandit' => Brandi::all(), 'omistajat' => Omistaja::all() ));
       
         }else{
       
@@ -64,6 +83,9 @@ class AstiatController extends BaseController{
     public static function update($as_id){
         
         $params = $_POST;
+        
+        $brandit = $params ['brandit'];
+        $omistajat = $params ['omistajat'];
 
         $attributes = array(
           'as_id' => $as_id,
@@ -72,16 +94,24 @@ class AstiatController extends BaseController{
           'koko' => $params['koko'],  
           'hinta' => $params['hinta'],
           'muoto' => $params['muoto'],
-          'malli' => $params['malli'],
-          'om_id' => $params['om_id'],
-          'om_id2' => $params['om_id2'] 
+          'malli' => $params['malli'],    
+          'brandit' => array(),
+          'omistajat' => array(), 
         );
 
+        foreach($brandit as $brandi){
+        $attributes['brandit'][] = $brandi;                
+      }
+      
+        foreach($omistajat as $omistaja){
+        $attributes['omistajat'][] = $omistaja;                
+      }
+        
         $astia = new Astiat($attributes);
         $errors = $astia->errors();
 
         if(count($errors) > 0){ 
-        View::make('/astia/muutos.html', array('errors' => $errors, 'attributes' => $attributes));
+        View::make('/astia/muutos.html', array('errors' => $errors, 'attributes' => $attributes, 'brandit' => Brandi::all(), 'omistajat' => Omistaja::all() ));
       
         }else{
         $astia->update();

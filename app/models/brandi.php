@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 // Astiastotietokannan brändi-tietokohteen mallit
 

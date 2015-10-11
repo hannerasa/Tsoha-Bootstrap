@@ -91,3 +91,39 @@
    $routes->get('/lisays/newb', function(){
    BrandiController::create();
    });
+   
+   // Omistaja ohjaukset 
+   
+   // Alla olevia ei käytetä
+
+   $routes->get('/omistaja', function(){
+   OmistajaController::listaa();
+   });
+   
+   $routes->get('/omistaja/:om_id', function($om_id){
+   OmistajaController::show($om_id);  
+   });
+ 
+   $routes->get('/omistaja/:om_id', function($om_id){
+   OmistajaController::show($om_id);  
+   });
+  
+   $routes->get('/omistaja/:om_id/muokkaa', function($om_id){
+   OmistajaController::muokkaa($om_id);  
+   });
+  
+   $routes->post('/omistaja/:om_id/muokkaa', function($om_id){
+   OmistajaController::update($om_id);
+   });
+  
+   $routes->post('/omistaja/:om_id/poista', function($om_id){
+   OmistajaController::poista($om_id); 
+   });
+  
+   $routes->post('/omistaja', function(){
+   OmistajaController::store();
+   });
+ 
+   $routes->get('/lisays/newb', function(){
+   OmistajaController::create();
+   });

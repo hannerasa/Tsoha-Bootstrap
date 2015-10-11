@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisaa uusi astia</h1>
-  
- <!--   
-{% if errors %}
-<div class="alert alert-danger">
-    <ul>
-        {% for error in errors %}
-        <li>{{error}}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endif %} -->
+
+  <h1>Lisaa uusi astia</h1>  
 
   <form method="post" action="{{base_path}}/astia">
     <div class="form-group">
@@ -36,23 +26,36 @@
     </div>
       
       <div class="form-group">
-      <label>Muoto</label>
-      <input type="text" name="muoto" class="form-control">
-    </div>
+        <label>Muoto</label>
+        <input type="text" name="muoto" class="form-control">
+      </div>
       
       <div class="form-group">
       <label>Malli</label>
       <input type="text" name="malli" class="form-control">
-    </div>
-    <div class="form-group">
-      <label>Omistaja</label>
-      <input type="text" name="om_id" class="form-control">
-    </div>
+      </div>
       
-      <div class="form-group">
-      <label>Toinen omistaja</label>
-      <input type="text" name="om_id2" class="form-control">
-    </div>
+      <!-- Hakee omistajat valittaviksi Omistaja-taulusta --> 
+      
+     <div class="form-group">
+    <label>Omistajat</label>
+    <select class="form-control" name="omistajat[]" multiple="">
+      {% for omistaja in omistajat %}
+      <option value="{{omistaja.om_id}}">{{omistaja.nimi}}</option>
+    {% endfor %}
+    </select>
+     </div>  
+      
+     <!-- Hakee bändit valittaviksi Brandi-taulusta --> 
+     
+    <div class="form-group">
+    <label>Brandi</label>
+   <select class="form-control" name="brandit[]" >
+    {% for brandi in brandit %}
+      <option value="{{brandi.bra_id}}">{{brandi.nimi}}</option>
+    {% endfor %}
+    </select>
+     </div>
             
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Lisaa</button>
