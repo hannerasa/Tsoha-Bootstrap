@@ -11,10 +11,8 @@
             <th>Hinta</th> 
             <th>Muoto</th> 
             <th>Malli</th> 
-            <th>Omistaja</th> 
-            <th>Toinen omistaja</th> 
-            <th>Brandi</th> 
-            
+            <th>Omistajat</th> 
+            <th>Brandi</th>            
             
         </tr>
     </thead>
@@ -29,15 +27,19 @@
             <td>{{astia.hinta}}</td>
             <td>{{astia.muoto}}</td>
             <td>{{astia.malli}}</td>    
-            <td>{{astia.om_id}}</td>
-            <td>{{astia.om_id2}}</td>             
+            <td>    
+         {% for omistaja in astia.omistajat %}
+            {{omistaja.nimi}}
+        {% endfor %}
+            </td>
+         
             <td>    
          {% for brandi in astia.brandit %}
             {{brandi.nimi}}
         {% endfor %}
             </td>
         </tr>
-        {% endfor %}
+        {% endfor %}      
     </tbody>
 </table>
 {% endblock %}
